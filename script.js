@@ -12,8 +12,9 @@ Every moment with you becomes a beautiful memory that I cherish deeply. Your smi
 On your special day, I wish you endless happiness, success, good health, and all the love you truly deserve.
 
 Thank you for being you.
+I love you soo much Jeet ❤️
 
-Forever Yours,
+Yours,
 Purva ❤️`;
 
 heartButton.addEventListener("click", () => {
