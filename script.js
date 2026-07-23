@@ -2,7 +2,6 @@ const heartButton = document.getElementById("heartButton");
 const surprise = document.getElementById("surprise");
 const typing = document.getElementById("typing");
 const celebrate = document.getElementById("celebrate");
-const music = document.getElementById("music");
 
 const letter = `My Dearest Jeet ❤️,
 
@@ -20,10 +19,6 @@ Purva ❤️`;
 heartButton.addEventListener("click", () => {
     surprise.style.display = "block";
     heartButton.style.display = "none";
-
-    if (music) {
-        music.play().catch(() => {});
-    }
 
     window.scrollTo({
         top: surprise.offsetTop,
