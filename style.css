@@ -151,28 +151,5 @@ padding:15px 28px;
 .letter{
 font-size:17px;
 }
-#loader{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:#050515;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-z-index:99999;
-transition:1s;
-}
-
-.loader-heart{
-font-size:70px;
-animation:beat 1s infinite;
-}
-
-@keyframes beat{
-50%{transform:scale(1.2);}
-}
 
 }
