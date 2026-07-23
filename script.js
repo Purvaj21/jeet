@@ -96,13 +96,4 @@ function createHearts() {
         }, 6500);
 
     }, 400);
-window.onload = () => {
-    setTimeout(() => {
-        document.getElementById("loader").style.opacity = "0";
-        setTimeout(() => {
-            document.getElementById("loader").style.display = "none";
-        },1000);
-    },2500);
-};
-
 }
