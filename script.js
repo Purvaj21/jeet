@@ -1,155 +1,104 @@
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Poppins',sans-serif;
+const heartButton = document.getElementById("heartButton");
+const surprise = document.getElementById("surprise");
+const typing = document.getElementById("typing");
+const celebrate = document.getElementById("celebrate");
+const music = document.getElementById("music");
+
+const letter = `My Dearest Jeet ❤️,
+
+Happy Birthday to the most special person in my life.
+
+Every moment with you becomes a beautiful memory that I cherish deeply. Your smile brightens my darkest days, your laughter fills my heart with joy, and your presence makes life so much more meaningful.
+
+On your special day, I wish you endless happiness, success, good health, and all the love you truly deserve.
+
+Thank you for being you.
+
+Forever Yours,
+Purva ❤️`;
+
+heartButton.addEventListener("click", () => {
+    surprise.style.display = "block";
+    heartButton.style.display = "none";
+
+    if (music) {
+        music.play().catch(() => {});
+    }
+
+    window.scrollTo({
+        top: surprise.offsetTop,
+        behavior: "smooth"
+    });
+
+    typeLetter();
+});
+
+function typeLetter() {
+    let i = 0;
+
+    function type() {
+        if (i < letter.length) {
+            typing.innerHTML += letter.charAt(i);
+            i++;
+            setTimeout(type, 35);
+        }
+    }
+
+    typing.innerHTML = "";
+    type();
 }
 
-body{
-background:linear-gradient(180deg,#03030f,#0d1026,#1b1036);
-color:white;
-overflow-x:hidden;
-text-align:center;
-}
+celebrate.addEventListener("click", () => {
 
-.hero{
-height:100vh;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-padding:20px;
-}
+    confetti({
+        particleCount: 300,
+        spread: 180,
+        origin: { y: 0.6 }
+    });
 
-h1{
-font-family:'Great Vibes',cursive;
-font-size:70px;
-margin-bottom:20px;
-text-shadow:0 0 25px hotpink;
-animation:glow 2s infinite alternate;
-}
+    setInterval(() => {
+        confetti({
+            particleCount: 80,
+            spread: 120,
+            origin: {
+                x: Math.random(),
+                y: Math.random() * 0.5
+            }
+        });
+    }, 1500);
 
-p{
-font-size:22px;
-opacity:.9;
-margin-bottom:35px;
-}
+    createHearts();
 
-@keyframes glow{
-from{
-text-shadow:0 0 10px hotpink;
-}
-to{
-text-shadow:0 0 35px deeppink;
-}
-}
+    alert("🎉 Happy Birthday Jeet ❤️\n\nForever Yours,\nPurva ❤️");
+});
 
-button{
-padding:18px 40px;
-font-size:20px;
-border:none;
-border-radius:50px;
-cursor:pointer;
-background:rgba(255,255,255,.15);
-backdrop-filter:blur(15px);
-color:white;
-box-shadow:0 0 25px rgba(255,0,120,.6);
-transition:.4s;
-animation:heartbeat 1.5s infinite;
-}
+function createHearts() {
 
-button:hover{
-transform:scale(1.08);
-background:#ff2f7a;
-}
+    setInterval(() => {
 
-@keyframes heartbeat{
-0%,100%{transform:scale(1);}
-50%{transform:scale(1.08);}
-}
+        const heart = document.createElement("div");
 
-.hidden{
-display:none;
-}
+        heart.innerHTML = "❤️";
 
-.gallery{
-display:flex;
-justify-content:center;
-gap:30px;
-flex-wrap:wrap;
-margin:50px auto;
-}
+        heart.style.position = "fixed";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.bottom = "-30px";
+        heart.style.fontSize = (20 + Math.random() * 25) + "px";
+        heart.style.pointerEvents = "none";
+        heart.style.transition = "transform 6s linear, opacity 6s linear";
+        heart.style.zIndex = "9999";
 
-.gallery img{
-width:320px;
-height:420px;
-object-fit:cover;
-border-radius:25px;
-border:4px solid rgba(255,255,255,.3);
-box-shadow:0 0 35px rgba(255,105,180,.6);
-transition:.4s;
-}
+        document.body.appendChild(heart);
 
-.gallery img:hover{
-transform:scale(1.05);
-}
+        setTimeout(() => {
+            heart.style.transform = "translateY(-110vh)";
+            heart.style.opacity = "0";
+        }, 100);
 
-.letter{
-width:85%;
-max-width:800px;
-margin:50px auto;
-padding:35px;
-background:rgba(255,255,255,.12);
-backdrop-filter:blur(18px);
-border-radius:25px;
-box-shadow:0 0 35px rgba(255,255,255,.15);
-line-height:1.9;
-font-size:20px;
-}
+        setTimeout(() => {
+            heart.remove();
+        }, 6500);
 
-canvas{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-pointer-events:none;
-}
-
-#stars{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:url("https://www.transparenttextures.com/patterns/stardust.png");
-opacity:.35;
-animation:moveStars 70s linear infinite;
-}
-
-@keyframes moveStars{
-from{background-position:0 0;}
-to{background-position:0 2000px;}
-}
-
-@media(max-width:768px){
-
-h1{
-font-size:48px;
-}
-
-.gallery img{
-width:90%;
-height:auto;
-}
-
-button{
-font-size:18px;
-padding:15px 28px;
-}
-
-.letter{
-font-size:17px;
-}
+    }, 400);
 
 }
